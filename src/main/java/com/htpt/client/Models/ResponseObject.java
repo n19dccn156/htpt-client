@@ -6,11 +6,11 @@ public class ResponseObject implements Serializable {
     
     private String status;
     private String message;
-    private Object data;
+    private UserModel data;
 
     public ResponseObject() {}
 
-    public ResponseObject(String status, String message, Object data) {
+    public ResponseObject(String status, String message, UserModel data) {
         this.status = status;
         this.message = message;
         this.data = data;
@@ -24,7 +24,7 @@ public class ResponseObject implements Serializable {
         this.message = message;
     }
 
-    public void setData(Object data) {
+    public void setData(UserModel data) {
         this.data = data;
     }
 
@@ -36,7 +36,7 @@ public class ResponseObject implements Serializable {
         return message;
     }
 
-    public Object getData() {
+    public UserModel getData() {
         return data;
     }
 

@@ -60,5 +60,15 @@ public class UserModel implements Serializable {
         return job;
     }
 
+    @Override
+    public String toString() {
+        return "UserModel [email=" + email + ", password=" + password + ", firstName=" + firstName + ", lastName="
+                + lastName + ", job=" + job + "]";
+    }
+
+    public String toJson() {
+        return "{\"email\":\""+email+"\",\"password\":\""+password+"\",\"firstName\":\""+firstName+"\",\"lastName\":\""+lastName+"\",\"job\":\""+job+"\"}";
+    }
+
     
 }

@@ -25,17 +25,17 @@
 	
 	<div class="limiter">
 		<div class="container-login101">
-			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
+			<!-- <div class="wrap-login100">
+				 <div class="login100-pic js-tilt" data-tilt>
 					<img src="images/img-01.png" alt="IMG">
-				</div>
+				</div> -->
 
-				<form class="login100-form validate-form" th:action="@{/login}" modelAttribute="login" method="post">
+				<form class="login100-form validate-form" th:action="@{/signup}" modelAttribute="signup" method="post">
 					<span class="login100-form-title">
 						Hệ Thống Phân Tán
 					</span>
 					<p style="color: red" th:if="${error != null}" th:text="${error}"></p>
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<div class="wrap-input100 validate-input" data-validate = "Email yêu cầu: ex@abc.xyz">
 						<input class="input100" type="text" id="email" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
@@ -43,34 +43,66 @@
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+					<div class="wrap-input100 validate-input" data-validate = "Mật khẩu là bắt buộc">
 						<input class="input100" type="password" id="pass" name="pass" placeholder="Mật khẩu">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Nhập lại mật khẩu là bắt buộc">
+						<input class="input100" type="password" id="pass2" name="pass2" placeholder="Nhập lại mật khẩu">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Họ là bắt buộc">
+						<input class="input100" type="text" id="firstname" name="firstname" placeholder="Họ">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-vcard" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Tên là bắt buộc">
+						<input class="input100" type="text" id="lastname" name="lastname" placeholder="Tên">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-vcard" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Công việc là bắt buộc">
+						<input class="input100" type="text" id="job" name="job" placeholder="Công việc">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-briefcase" aria-hidden="true"></i>
+						</span>
+					</div>
 					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" type="submit">
-							Đăng nhập
+							Đăng ký
 						</button>
 					</div>
 
-					<div class="text-center p-t-12">
+					<!-- <div class="text-center p-t-12">
 						<a class="txt2" href="#">
 							Quên mật khẩu?
 						</a>
-					</div>
+					</div> -->
 
-					<div class="text-center p-t-136">
-						<a class="txt2" th:href="@{'signup'}">
-							Tạo mới tài khoản
+					<div class="text-center p-t-50">
+						<a class="txt2" th:href="@{'login'}">
+							Tôi đã có tài khoản
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
 					</div>
 				</form>
-			</div>
+			<!-- </div> -->
 		</div>
 	</div>
 	
