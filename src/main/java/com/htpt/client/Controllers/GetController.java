@@ -37,16 +37,16 @@ public class GetController {
         return "redirect:/login";
     }
 
-    @GetMapping("/update")
-    public String update() {
+    // @GetMapping("/update")
+    // public String update() {
 
-        return "/update";
-    }
+    //     return "/update";
+    // }
 
-    @GetMapping("/signup")
-    public String sigup() {
+    // @GetMapping("/signup")
+    // public String sigup() {
 
-        return "/signup";
-    }
+    //     return "/signup";
+    // }
 
 }

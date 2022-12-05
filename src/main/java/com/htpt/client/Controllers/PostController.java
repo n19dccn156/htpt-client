@@ -1,12 +1,12 @@
 package com.htpt.client.Controllers;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,19 +14,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.htpt.client.Models.ResponseObject;
 import com.htpt.client.Models.UserModel;
 import com.htpt.client.Models.Form.LoginModel;
-import com.htpt.client.Models.Form.SignupModel;
 import com.htpt.client.service.HandleLogin;
+import com.htpt.client.service.HandlePing;
 
 @Controller
 @RequestMapping
 public class PostController {
     
     @PostMapping("/login")
-    public String checkLogin(@ModelAttribute("login") LoginModel model, HttpSession session, Model validate) {
+    public String checkLogin(@ModelAttribute("login") LoginModel model, HttpSession session, Model validate, HttpServletRequest request) {
 
-        String host = "http://192.168.10.108:8082";
+        HandlePing pingResponse = new HandlePing();
         HandleLogin handleLogin = new HandleLogin();
-        ResponseObject response = handleLogin.basicPost(host, model);
+
+        String ipClient = request.getRemoteAddr();
+        String serverResponse = pingResponse.ping(ipClient);
+        if(serverResponse.equals("") || serverResponse.equals(null)) {
+            validate.addAttribute("error", "Server đang bảo trì");
+            return "login";
+        }
+        ResponseObject response = handleLogin.basicPost(serverResponse, model, ipClient);
 
         if(response.getStatus().equals("failed")) {
 
@@ -43,7 +50,6 @@ public class PostController {
                                             jsonObject.getString("job"));
             session.removeAttribute("user");
             session.setAttribute("user", user);
-            System.out.println(jsonObject.getString("email"));
 
             return "redirect:/profile";
         }catch (JSONException err){
@@ -52,7 +58,7 @@ public class PostController {
         }
 
     }
-
+    
     // @PostMapping("/signup")
     // public String checkSignup(@ModelAttribute("signup") SignupModel model, Model validate) {
         
